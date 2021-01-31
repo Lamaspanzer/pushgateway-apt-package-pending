@@ -49,5 +49,22 @@ groups:
     annotations:
       description: "Gitlab require an update !"
 ```
+Or in "/etc/prometheus/alerts/HostRebootRequired.yml"
+```sh
+groups:
+- name: HostRebootRequired
+  rules:
+  - alert: HostRebootRequired
+    expr: node_reboot_required == 1
+    for: 10s
+    labels:
+      severity: warning
+    annotations:
+      description: "Reboot is required on {{ $labels.instance }} !"
+EOF
+```
+
+## Contributors
+Special thanks to @ldubos for his help
 ## Sources
 [https://github.com/prometheus-community/node-exporter-textfile-collector-scripts/blob/master/apt.sh](https://github.com/prometheus-community/node-exporter-textfile-collector-scripts/blob/master/apt.sh)
